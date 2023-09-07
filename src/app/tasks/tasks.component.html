@@ -1,0 +1,36 @@
+<div>
+  <p>{{ today | date }}</p>
+  <p>The time is {{ today | date : "h:mm a" }}</p>
+</div>
+
+<div [ngSwitch]="role">
+  <ng-container *ngSwitchCase="'admin'">
+    <h2>My Tasks</h2>
+
+    <div *ngIf="taskCount < 1">
+      <h4>There is no tasks here!</h4>
+    </div>
+
+    <ul class="tasks">
+      <li *ngFor="let task of tasksArr">
+        <button type="button" class="btn btn-default" (click)="onClick(task)">
+          <span>{{ task.id }}</span>
+          <span>{{ task.title }}</span>
+        </button>
+      </li>
+    </ul>
+    
+    <div *ngIf="selectedTask">
+      <p>Task Title: {{ selectedTask.title }}</p>
+      <p>Task Description: {{ selectedTask.description }}</p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'user'">
+    <h3>Welcome User!</h3>
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    <h3>Invalid user!</h3>
+  </ng-container>
+</div>
