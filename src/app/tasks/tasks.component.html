@@ -3,34 +3,33 @@
   <p>The time is {{ today | date : "h:mm a" }}</p>
 </div>
 
-<div [ngSwitch]="role">
-  <ng-container *ngSwitchCase="'admin'">
-    <h2>My Tasks</h2>
+<div >
+  <app-tasks-arr
+    [tasks]="tasksArr"
+    [taskCount]="taskCount"
+    (selectedTask)="onTaskSelected($event)"
+  ></app-tasks-arr>
 
-    <div *ngIf="taskCount < 1">
-      <h4>There is no tasks here!</h4>
+  <div *ngIf="selectedTask">
+    <div>
+      <label for="taskTitle">task title: </label>
+      <input #taskTitle  id="taskTitle" [(ngModel)]="selectedTask.title" placeholder="title" (change)="onTitleChange()">
     </div>
+    <p>Task Description: {{ selectedTask.description }}</p>
+  </div>
+  <div>
+    <!-- Add a form to collect user input -->
+    <form (ngSubmit)="addTask()">
+      <label for="title">Title:</label>
+      <input type="text" id="title" [(ngModel)]="newTask.title" required>
 
-    <ul class="tasks">
-      <li *ngFor="let task of tasksArr">
-        <button type="button" class="btn btn-default" (click)="onClick(task)">
-          <span>{{ task.id }}</span>
-          <span>{{ task.title }}</span>
-        </button>
-      </li>
-    </ul>
-    
-    <div *ngIf="selectedTask">
-      <p>Task Title: {{ selectedTask.title }}</p>
-      <p>Task Description: {{ selectedTask.description }}</p>
-    </div>
-  </ng-container>
+      <label for="description">Description:</label>
+      <input type="text" id="description" [(ngModel)]="newTask.description" required>
 
-  <ng-container *ngSwitchCase="'user'">
-    <h3>Welcome User!</h3>
-  </ng-container>
+      <button type="submit">Add Task</button>
+    </form>
 
-  <ng-container *ngSwitchDefault>
-    <h3>Invalid user!</h3>
-  </ng-container>
+  </div>
+
+
 </div>
