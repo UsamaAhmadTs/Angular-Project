@@ -13,9 +13,17 @@ export class TaskService {
   }
   addTask(newTask: Tasks): void {
     newTask.id = this.generateUniqueId();
-    // this.tasks.push(newTask)
-    this.tasks= [...this.tasks, newTask]
+       this.tasks.push(newTask)
+    // this.tasks = [...this.tasks, newTask]
   }
+  deleteTask(taskTitle: string): void {
+    const index = this.tasks.findIndex(task => task.title === taskTitle);
+
+    if (index !== -1) {
+      this.tasks.splice(index, 1);
+    }
+  }
+
   updateTask(updatedTask: Tasks): void {
     const existingTask = this.tasks.find(task => task.title === updatedTask.title);
     if (existingTask) {

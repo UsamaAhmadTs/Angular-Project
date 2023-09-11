@@ -12,8 +12,9 @@
 
   <div *ngIf="selectedTask">
     <div>
-      <label for="taskTitle">task title: </label>
-      <input #taskTitle  id="taskTitle" [(ngModel)]="selectedTask.title" placeholder="title" (change)="onTitleChange()">
+      <label for="taskTitle">task title :</label>
+      <input #taskTitle  id="taskTitle"  placeholder="title" [(ngModel)]="selectedTask.title ">
+      <button (click)="deleteTask(selectedTask.title)">Delete</button>
     </div>
     <p>Task Description: {{ selectedTask.description }}</p>
   </div>

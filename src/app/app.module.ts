@@ -7,12 +7,16 @@ import { TasksComponent } from './tasks/tasks.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TasksArrComponent } from './tasks-arr/tasks-arr.component';
 import {FormsModule} from "@angular/forms";
+import { ContainerComponent } from './container/container.component';
+import { ManagerComponent } from './manager/manager.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TasksComponent,
-    TasksArrComponent
+    TasksArrComponent,
+    ContainerComponent,
+    ManagerComponent
   ],
   imports: [
     BrowserModule,

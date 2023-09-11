@@ -4,27 +4,26 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  Input,
-  OnInit,
-  ViewChild
+  OnInit, QueryList,
+  ViewChild, ViewChildren
 } from '@angular/core';
 import {Tasks} from '../tasks';
 import {tasks} from '../mock-tasks';
-import {TaskService} from '../task.service';
-
+import {TaskService} from '../task.service'
 import {TasksArrComponent} from "../tasks-arr/tasks-arr.component";
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class TasksComponent implements OnInit,AfterViewInit {
 
 
   @ViewChild(TasksArrComponent) tasksArrComponent!: TasksArrComponent;
   @ViewChild('taskTitle') taskTitle!: ElementRef;
+  @ViewChildren(TasksArrComponent) tasksArrList!: QueryList<TasksArrComponent>;
   today: number = Date.now();
   taskCount: number = tasks.length;
   selectedTask?: Tasks;
@@ -46,6 +45,14 @@ export class TasksComponent implements OnInit,AfterViewInit {
       this.tasksArr = tasks;
     });
   }
+
+  deleteTask(taskTitle: string): void {
+    this.taskService.deleteTask(taskTitle);
+    this.selectedTask = undefined; // Reset selected task after deletion
+    this.getTasks(); // Update the tasks array after deletion
+  }
+
+
   addTask(): void {
     this.taskService.addTask(this.newTask);
     this.newTask = { id: 0, title: '', description: '' }; // Reset newTask after adding
@@ -54,6 +61,7 @@ export class TasksComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit(): void {
     this.tasksArrComponent.taskTitle = 'New Title from Parent';
+    this.tasksArrList.forEach(item => console.log(item));
   }
   onTitleChange() {
     if (this.selectedTask) {
