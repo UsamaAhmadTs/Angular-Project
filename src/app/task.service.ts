@@ -1,38 +1,43 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Tasks } from './tasks';
-import { tasks } from './mock-tasks';
+import {Injectable} from '@angular/core';
+
+import {Observable} from 'rxjs';
+
+import {Task} from './task';
+
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+
+const httpOptions = {
+    headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'my-auth-token'
+    })
+};
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class TaskService {
-  private tasks: Tasks[] = tasks;
-  getTasks(): Observable<Tasks[]> {
-    return of(tasks);
-  }
-  addTask(newTask: Tasks): void {
-    newTask.id = this.generateUniqueId();
-       this.tasks.push(newTask)
-    // this.tasks = [...this.tasks, newTask]
-  }
-  deleteTask(taskTitle: string): void {
-    const index = this.tasks.findIndex(task => task.title === taskTitle);
+    private apiUrl = 'http://localhost:3005';
 
-    if (index !== -1) {
-      this.tasks.splice(index, 1);
+    constructor(private http: HttpClient) {
     }
-  }
 
-  updateTask(updatedTask: Tasks): void {
-    const existingTask = this.tasks.find(task => task.title === updatedTask.title);
-    if (existingTask) {
-      existingTask.title = updatedTask.title;
+    getTasks(): Observable<Task[]> {
+        return this.http.get<Task[]>(`${this.apiUrl}/tasks`);
     }
-  }
 
-  private generateUniqueId(): number {
-    const maxId = Math.max(...this.tasks.map(task => task.id), 0);
-    return maxId + 1;
-  }
+    searchTasks(term: string): Observable<Task[]> {
+        const options = term ?
+            {params: new HttpParams().set('name', term)} : {};
+        return this.http.get<Task[]>((`${this.apiUrl}/tasks`), options)
+    }
+
+    addTask(newTask: Task): Observable<Task> {
+        return this.http.post<Task>(`${this.apiUrl}/tasks`, newTask, httpOptions)
+    }
+
+    deleteTask(taskId: number): Observable<Task> {
+        return this.http.delete<Task>(`${this.apiUrl}/tasks/${taskId}`, httpOptions);
+    }
+
 }

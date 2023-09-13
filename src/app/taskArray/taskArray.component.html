@@ -2,15 +2,15 @@
   <ng-container *ngSwitchCase="'admin'">
     <h2>My Tasks</h2>
 
-    <div *ngIf="taskCount < 1">
+    <div *ngIf="tasks.length < 1">
       <h4>There is no tasks here!</h4>
     </div>
 
     <ul class="tasks">
       <li *ngFor="let task of tasks">
-        <button type="button" class="btn btn-default" (click)="selectTask(task)" >
+        <button type="button" class="btn btn-default" (click)="selectTask(task)">
           <span class="badge">{{ task.id }}</span>
-          <input class="title" [(ngModel)]="task.title" >
+          <input class="title" [(ngModel)]="task.title">
         </button>
       </li>
     </ul>

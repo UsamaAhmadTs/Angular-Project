@@ -1,13 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
+
+import {Constants} from "../constants";
 
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
   styleUrls: ['./manager.component.scss']
 })
-export class ManagerComponent implements OnInit{
-  managerName: string = 'usama'
-  ngOnInit(): void {
-  }
-
+export class ManagerComponent {
+  managerName: string = Constants.OLD_MANAGER;
 }

@@ -1,36 +1,46 @@
 <div>
-  <p>{{ today | date }}</p>
-  <p>The time is {{ today | date : "h:mm a" }}</p>
+    <p>{{ today | date }}</p>
+    <p>The time is {{ today | date : "h:mm a" }}</p>
 </div>
 
-<div >
-  <app-tasks-arr
-    [tasks]="tasksArr"
-    [taskCount]="taskCount"
-    (selectedTask)="onTaskSelected($event)"
-  ></app-tasks-arr>
+<div>
+    <app-tasks-array
+            [tasks]="tasksArray"
+            [taskCount]="taskCount"
+            (selectedTask)="onTaskSelected($event)"
+    ></app-tasks-array>
 
-  <div *ngIf="selectedTask">
-    <div>
-      <label for="taskTitle">task title :</label>
-      <input #taskTitle  id="taskTitle"  placeholder="title" [(ngModel)]="selectedTask.title ">
-      <button (click)="deleteTask(selectedTask.title)">Delete</button>
+    <div class="center-container" *ngIf="selectedTask">
+        <div>
+            <label for="taskTitle">task title :</label>
+            <input type="text" #taskTitle id="taskTitle" placeholder="title" [(ngModel)]="selectedTask.title ">
+            <button (click)="deleteTask(selectedTask.id)" name="taskId">Delete</button>
+        </div>
+        <p>Task Description: {{ selectedTask.description }}</p>
     </div>
-    <p>Task Description: {{ selectedTask.description }}</p>
-  </div>
-  <div>
-    <!-- Add a form to collect user input -->
-    <form (ngSubmit)="addTask()">
-      <label for="title">Title:</label>
-      <input type="text" id="title" [(ngModel)]="newTask.title" required>
 
-      <label for="description">Description:</label>
-      <input type="text" id="description" [(ngModel)]="newTask.description" required>
-
-      <button type="submit">Add Task</button>
+    <form (ngSubmit)="searchTasks()">
+        <label>
+            Search:
+            <input type="text" name="searchTerm" [(ngModel)]="searchTerm">
+        </label>
+        <button type="submit">Search</button>
     </form>
 
-  </div>
+    <div class="form-container">
+        <form (ngSubmit)="addTask()">
+            <label>
+                Title:
+                <input type="text" name="title" [(ngModel)]="newTask.title" required>
+            </label>
 
+            <label>
+                Description:
+                <input type="text" name="description" [(ngModel)]="newTask.description" required>
+            </label>
+
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
 
 </div>

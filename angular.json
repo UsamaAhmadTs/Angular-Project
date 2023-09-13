@@ -30,7 +30,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss" ,
+              "@angular/material/prebuilt-themes/purple-green.css",
+              "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
@@ -94,6 +95,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -103,6 +105,6 @@
     }
   },
   "cli": {
-    "analytics": "f144996e-b73b-4eb7-833c-d51c6c21cbb0"
+    "analytics": "d055df61-54c8-4aaa-b2bf-a5cbdc2c0d0d"
   }
 }
