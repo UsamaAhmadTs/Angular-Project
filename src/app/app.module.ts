@@ -32,6 +32,8 @@ import {MatListModule} from '@angular/material/list';
 
 import {TaskArrayComponent} from "./taskArray/taskArray.component";
 
+import {LoginComponent} from "./login/login.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,8 @@ import {TaskArrayComponent} from "./taskArray/taskArray.component";
     TaskArrayComponent,
     ContainerComponent,
     ManagerComponent,
-    AppNavComponent
+    AppNavComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

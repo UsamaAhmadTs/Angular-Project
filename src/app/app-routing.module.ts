@@ -6,6 +6,8 @@ import {TasksComponent} from "./tasks/tasks.component";
 
 import {ManagerComponent} from "./manager/manager.component";
 
+import {LoginComponent} from "./login/login.component";
+
 const routes: Routes = [
   {
     path: 'tasks', component: TasksComponent
@@ -15,6 +17,9 @@ const routes: Routes = [
   },
   {
     path: '', redirectTo: '/tasks', pathMatch: 'full'
+  },
+  {
+    path:'login',component: LoginComponent
   }
 ];
 

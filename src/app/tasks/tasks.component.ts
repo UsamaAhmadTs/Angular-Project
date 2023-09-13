@@ -32,7 +32,6 @@ export class TasksComponent implements OnInit {
 
     today: number = Constants.TODAY;
     selectedTask?: Task;
-    editTask: Task | undefined;
     taskCount: number = 0;
     searchTerm: string = '';
     role = Constants.ROLE_ADMIN;
@@ -75,7 +74,6 @@ export class TasksComponent implements OnInit {
     }
 
     addTask(): void {
-        this.editTask = undefined;
         const newTask: Task = {
             id: 0,
             title: this.newTask.title,

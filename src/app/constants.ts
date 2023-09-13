@@ -3,5 +3,7 @@ export const Constants = {
   ROLE_ADMIN: 'admin',
   MANAGER_NAME: 'ali',
   OLD_MANAGER: 'ahmad',
-  TODAY: Date.now()
+  TODAY: Date.now(),
+  EMAIL: "admin@gmail.com",
+  PASSWORD: "admin"
 };

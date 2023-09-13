@@ -1,12 +1,12 @@
 /* Style for buttons */
 button {
-  padding: 10px 20px;
+  padding: 0.5rem 1rem;
   background-color: #007bff; /* Blue color, you can change it to your preferred color */
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 1rem;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 button:hover {
@@ -22,28 +22,28 @@ button:hover {
 }
 
 .center-container > * {
-  margin-bottom: 10px; /* Add some space between elements */
+  margin-bottom: 1rem; /* Add some space between elements */
 }
 /* Style for input fields */
 input[type="text"] {
-  padding: 10px;
+  padding: 0.3rem;
   width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  margin-bottom: 10px;
+  border: 0.1rem solid #ccc;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* Style for labels */
 label {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: bold;
 }
 
 /* Style for the form */
 form {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 
 /* Centering elements */
@@ -55,5 +55,5 @@ form {
 }
 
 .center-container > * {
-  margin-bottom: 10px; /* Add some space between elements */
+  margin-bottom: 1rem; /* Add some space between elements */
 }
