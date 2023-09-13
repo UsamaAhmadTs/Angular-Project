@@ -1,0 +1,27 @@
+<div [ngSwitch]="role">
+  <ng-container *ngSwitchCase="'admin'">
+    <h2>My Tasks</h2>
+
+    <div *ngIf="tasks.length < 1">
+      <h4>There is no tasks here!</h4>
+    </div>
+
+    <ul class="tasks">
+      <li *ngFor="let task of tasks">
+        <button type="button" class="btn btn-default" (click)="selectTask(task)">
+          <span class="badge">{{ task.id }}</span>
+          <input class="title" [(ngModel)]="task.title">
+        </button>
+      </li>
+    </ul>
+
+  </ng-container>
+  <ng-container *ngSwitchCase="'user'">
+    <h3>Welcome User!</h3>
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    <h3>Invalid user!</h3>
+  </ng-container>
+</div>
+
